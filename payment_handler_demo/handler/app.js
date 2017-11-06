@@ -32,8 +32,8 @@ async function asyncGenerateResponse(methodData) {
     keyImportData.format,
     keyImportData.keyData,
     keyImportData.algo,
-    keyImportData.extractable,
-    keyImportData.usages
+    false,
+    ['encrypt']
   );
 
   let encryptedBytes = await crypto.subtle.encrypt(
