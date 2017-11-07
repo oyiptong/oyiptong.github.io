@@ -84,7 +84,7 @@ async function install() {
   await registration.paymentManager.instruments
     .set('instrument-key', {
       name: 'Chrome uses name and icon from the web app manifest',
-      enabledMethods: ['https://localhost.airbnb.com/payment_handler_demo/handler/'],
+      enabledMethods: ['https://oyiptong.github.io/payment_handler_demo/handler/'],
       capabilities: {
         supportedNetworks: ['visa'],
         supportedTypes: ['credit'],

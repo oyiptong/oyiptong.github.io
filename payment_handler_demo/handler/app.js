@@ -38,7 +38,7 @@ async function asyncGenerateResponse(methodData) {
 
   let encryptedBytes = await crypto.subtle.encrypt(
     {
-      name: 'RSA-OAEP',
+      name: keyImportData.algo.name,
       iv: crypto.getRandomValues(new Uint8Array(16))
     },
     publicKey,
@@ -48,7 +48,7 @@ async function asyncGenerateResponse(methodData) {
   let encryptedCardData = base64js.fromByteArray(new Uint8Array(encryptedBytes));
 
   return {
-    methodName: 'https://localhost.airbnb.com/payment_handler_demo/handler/',
+    methodName: 'https://oyiptong.github.io/payment_handler_demo/handler/',
     details: {
       cardholderName: 'Kaiser Soze',
       suffix: '1111',

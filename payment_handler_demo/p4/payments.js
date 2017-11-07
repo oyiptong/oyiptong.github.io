@@ -8,7 +8,7 @@ function showModal(text, options = {}) {
 
 async function buildPaymentRequest(options = {}) {
   const supportedInstruments = [{
-    supportedMethods: 'https://localhost.airbnb.com/payment_handler_demo/handler/',
+    supportedMethods: 'https://oyiptong.github.io/payment_handler_demo/handler/',
     data: {
       publicKey: {
         format: 'jwk',
@@ -89,7 +89,7 @@ async function callPaymentRequest() {
   let options = {
     requestPayerName: true,
     requestPayerPhone: true,
-    requestPayerEmail: true,
+    requestPayerEmail: true
   };
   let request = await buildPaymentRequest(options);
 

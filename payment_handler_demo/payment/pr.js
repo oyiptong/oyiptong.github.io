@@ -11,7 +11,7 @@ function buildPaymentRequest() {
   }
 
   var supportedInstruments = [{
-    supportedMethods: 'https://localhost.airbnb.com/payment_handler_demo/handler/',
+    supportedMethods: 'https://oyiptong.github.io/payment_handler_demo/handler/',
     data: {
       publicKey: {
         format: 'jwk',
