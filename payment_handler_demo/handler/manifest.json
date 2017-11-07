@@ -1,7 +1,7 @@
 {
-    "name": "Test Payment Handler",
+    "name": "Belo Pay",
     "icons": [{
-        "src": "tree.png",
+        "src": "belo.png",
         "sizes": "600x600",
         "type": "image/png"
     }]
