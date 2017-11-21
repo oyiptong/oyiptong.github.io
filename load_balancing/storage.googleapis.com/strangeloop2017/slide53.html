@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from storage.googleapis.com/strangeloop2017/slide53.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Oct 2017 05:27:54 GMT -->
+<head>
+    <title>Predictive Load balancing: Unfair but Faster & more Robust</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            background-color: #f5f5f2;
+        }
+    </style>
+</head>
+
+<body>
+    <button style="float: right;" onclick="next()">Next</button>
+
+    <canvas></canvas>
+    <script src="lodash.min.js"></script>
+    <script src="lib/Server.js"></script>
+    <script src="lib/Request.js"></script>
+    <script src="lib/WindowHistogram.js"></script>
+    <script src="lib/HeatMap.js"></script>
+    <script src="lib/SlidingMedian.js"></script>
+    <script src="lib/Stats.js"></script>
+    <script src="lib/LatencyPlot.js"></script>
+    <script src="defaultConfig.js"></script>
+    <script>
+        config.showLatencyPlot = false;
+        config.showHistogram = false;
+        config.bottomOffset = 50;
+
+        config.source.globalRps = 0.1;
+        config.source.number = 1;
+        config.server.number = 3;
+
+        config.networkDelay = 1000;
+        config.source.work = () => 5000;
+        config.server.latency = (req) =>  Math.round(req.work);
+
+        config.loadbalancing = "aperture-predictive";
+        config.predictive.inactivityPeriodMs = 30000;
+
+        config.aperture.minRefreshPeriod = 2000;
+        config.aperture.refreshPeriod = 10000;
+
+        config.source.showLatency = true;
+        config.emitPaused = true;
+        // config.fontSize = 20;
+
+        const slideNumber = 53;
+        const maxSlideNumber = 64;
+    </script>
+    <script src="transition.js"></script>
+    <script src="lib/Main.js"></script>
+    <script>
+            nextActions.push(() => {
+                config.emitPaused = false;
+            });
+            nextActions.push(() => {
+                config.source.globalRps = 0.4;
+                config.server.number = 8;
+            });
+            nextActions.push(() => {
+                servers[0].latency = (req) => Math.round(3 * req.work + (100 * normalRandom()));
+                servers[1].latency = (req) => Math.round(3 * req.work + (100 * normalRandom()));
+                servers[2].latency = (req) => Math.round(3 * req.work + (100 * normalRandom()));
+                servers[0].color = "#CCC";
+                servers[1].color = "#CCC";
+                servers[2].color = "#CCC";
+            });
+            nextActions.push(() => {
+                config.source.showLatency = false;
+                config.networkDelay = 750;
+                config.source.number = 4;
+                config.source.work = () => 1500;
+                config.source.globalRps = 1;
+                config.showHistogram = true;
+            });
+            nextActions.push(() => {
+                config.loadbalancing = "random";
+            });
+            nextActions.push(() => {
+                config.loadbalancing = "leastloaded";
+            });
+
+        </script>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=UA-107643375-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107643375-1');
+</script>
+
+<!-- Mirrored from storage.googleapis.com/strangeloop2017/slide53.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Oct 2017 05:27:54 GMT -->
+</html>
+

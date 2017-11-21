@@ -1,0 +1,5 @@
+date	size'/'remotesize	flags(request:Update,Range state:File response:Modified,Chunked,gZipped)	statuscode	status ('servermsg')	MIME	Etag|Date	URL	localfile	(from URL)
+22:25:08	1035/1035	---M--	200	added ('OK')	text/html	etag:%2220663215f65bf95ace9acab8a3656e06%22	https://storage.googleapis.com/strangeloop2017/slide0.html	./storage.googleapis.com/strangeloop2017/slide0.html	(from )
+22:25:10	133/133	---M--	404	error ('Not%20Found')	application/xml	date:Fri,%2020%20Oct%202017%2005:25:09%20GMT	https://storage.googleapis.com/robots.txt		(from )
+22:25:11	116039/116039	---M--	200	added ('OK')	image/png	etag:%22563a13109cec5036b93e97b4408fd63b%22	https://storage.googleapis.com/strangeloop2017/img/slide0.png	./storage.googleapis.com/strangeloop2017/img/slide0.png	(from https://storage.googleapis.com/strangeloop2017/slide0.html)
+22:25:11	358/358	---M--	200	added ('OK')	text/javascript	etag:%22231a86f45c92a371b72acc5f85980ae8%22	https://storage.googleapis.com/strangeloop2017/transition.js	./storage.googleapis.com/strangeloop2017/transition.js	(from https://storage.googleapis.com/strangeloop2017/slide0.html)

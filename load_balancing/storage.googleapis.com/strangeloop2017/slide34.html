@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from storage.googleapis.com/strangeloop2017/slide34.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Oct 2017 05:27:36 GMT -->
+<head>
+    <title>Predictive Load balancing: Unfair but Faster & more Robust</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            background-color: #f5f5f2;
+        }
+    </style>
+</head>
+
+<body>
+    <button style="float: right;" onclick="next()">Next</button>
+
+    <canvas></canvas>
+    <script src="lodash.min.js"></script>
+    <script src="lib/Server.js"></script>
+    <script src="lib/Request.js"></script>
+    <script src="lib/WindowHistogram.js"></script>
+    <script src="lib/HeatMap.js"></script>
+    <script src="lib/SlidingMedian.js"></script>
+    <script src="lib/Stats.js"></script>
+    <script src="lib/LatencyPlot.js"></script>
+    <script src="defaultConfig.js"></script>
+    <script>
+        config.showHistogram = true;
+        config.drawHeader = false;
+        config.drawAnimation = false;
+        config.showLatencyPlot = false;
+        config.alignGraphs = false;
+
+        config.source.globalRps = 10;
+        config.source.number = 1;
+        config.server.number = 6;
+
+        config.networkDelay = 100;
+        config.source.work = () => normalRandom() * 200;
+        config.server.latency = (req) =>  Math.round(req.work);
+
+        config.loadbalancing = "leastloaded";
+        config.showMedianGraph = true;
+        const slideNumber = 34;
+        const maxSlideNumber = 64;
+    </script>
+    <script src="transition.js"></script>
+    <script src="lib/Main.js"></script>
+    <script>
+        alignGraphs();
+        latencyPlot.position.x = histogram.position.x;
+        latencyPlot.position.y = histogram.position.y - histogram.dimension.y - 20;
+        latencyPlot.dimension.x = histogram.dimension.x;
+        latencyPlot.dimension.y = latencyPlot.position.y - 20;
+        config.showLatencyPlot = true;
+
+
+        nextActions.push(() => {
+            config.source.work = () => normalRandom() * 400;
+        });
+        nextActions.push(() => {
+            config.source.work = () => normalRandom() * 600;
+        });
+        nextActions.push(() => {
+            config.source.work = () => normalRandom() * 200;
+        });
+    </script>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=UA-107643375-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107643375-1');
+</script>
+
+<!-- Mirrored from storage.googleapis.com/strangeloop2017/slide34.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Oct 2017 05:27:36 GMT -->
+</html>
+

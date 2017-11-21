@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+
+
+<!-- Mirrored from storage.googleapis.com/strangeloop2017/slide3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Oct 2017 05:27:01 GMT -->
+<head>
+    <title>Predictive Load balancing: Unfair but Faster & more Robust</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        canvas {
+            background-color: #f5f5f2;
+        }
+    </style>
+</head>
+
+<body>
+    <button style="float: right;" onclick="next()">Next</button>
+
+    <canvas></canvas>
+    <script src="lodash.min.js"></script>
+    <script src="lib/Server.js"></script>
+    <script src="lib/Request.js"></script>
+    <script src="lib/WindowHistogram.js"></script>
+    <script src="lib/HeatMap.js"></script>
+    <script src="lib/SlidingMedian.js"></script>
+    <script src="lib/Stats.js"></script>
+    <script src="lib/LatencyPlot.js"></script>
+    <script src="defaultConfig.js"></script>
+    <script>
+        config.showLatencyPlot = false;
+        config.source.globalRps = 0.4;
+        config.source.work = () => 800 + normalRandom() * 100;
+        config.server.latency = (req) =>  Math.round(req.work);
+        const slideNumber = 3;
+        const maxSlideNumber = 64;
+    </script>
+    <script src="transition.js"></script>
+
+    <script src="lib/Main.js"></script>
+    <script>
+        nextActions.push(() => {
+            config.server.number = 10;
+            config.source.globalRps = 2;
+        });
+        nextActions.push(() => {
+            config.loadbalancing = "roundrobin";
+        });
+        nextActions.push(() => {
+            config.source.showLoad = true;
+            config.loadbalancing = "leastloaded";
+        });
+    </script>
+</body><script async src="https://www.googletagmanager.com/gtag/js?id=UA-107643375-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-107643375-1');
+</script>
+
+<!-- Mirrored from storage.googleapis.com/strangeloop2017/slide3.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 20 Oct 2017 05:27:11 GMT -->
+</html>
+
